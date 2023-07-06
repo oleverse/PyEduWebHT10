@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Quotes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'quoteapp/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'quoteapp/main.css' %}">
+</head>
+    <body>
+        <main class="container">
+            <div class="row header-box">
+                <div class="col-md-6">
+                    <h1>
+                        <a href="/" style="text-decoration: none">Quotes</a>
+                    </h1>
+                </div>
+                <div class="col-md-6">
+                    {% if user.is_authenticated %}
+                    <p>
+                        <a href="{% url 'users:logout' %}">Logout ({{ user }})</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'quoteapp:add-quote' %}">Add Quote</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'quoteapp:add-author' %}">Add Author</a>
+                    </p>
+                    {% else %}
+                    <p>
+                        <a href="{% url 'users:signup' %}" role="button">Sign Up</a>
+                    </p>
+                    <p>
+                        <a href="{% url 'users:login' %}">Login</a>
+                    </p>
+                    {% endif %}
+                    <p>
+                        <a href="/scrape-quotes/">Scrape quotes</a>
+                    </p>
+                </div>
+            </div>
+            {% block content %} {% endblock %}
+        </main>
+    </body>
+</html>

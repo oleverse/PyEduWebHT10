@@ -1,0 +1,42 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+{% load order_tags %}
+<div class="row">
+    <div class="col-md-8">
+        {% if quotes %}
+        {% for quote in quotes %}
+        <div class="quote">
+            <span class="text">{{ quote.text }}</span>
+            <span>by <small class="author">{{ quote.author.fullname }}</small>
+                <a href="/author/{{ quote.author.slug }}">(about)</a>
+            </span>
+            <div class="tags">
+                Tags:
+                {% for tag in quote.tags|order_by:"name" %}
+                <a class="tag" href="/tag/{{ tag.name }}">{{ tag.slug }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        No quotes found!
+        {% endif %}
+        <nav>
+            <ul class="pager">
+                {% if next_page %}
+                <li class="next">
+                    <a href="/page/{{ next_page }}/">Next <span aria-hidden="true">&rarr;</span></a>
+                </li>
+                {% endif %}
+                {% if prev_page %}
+                <li class="previous">
+                    <a href="/page/{{ prev_page }}/"><span aria-hidden="true">&larr;</span> Previous</a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+{% endblock %}

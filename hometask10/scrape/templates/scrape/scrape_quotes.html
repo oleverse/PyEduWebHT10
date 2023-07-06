@@ -1,0 +1,50 @@
+{% extends "quoteapp/base.html" %}
+
+{% block content %}
+
+{% if messages %}
+<div>
+    {% for message in messages %}
+    <div {% if message.tags %} class="alert-{{ message.tags }}" {% endif %}>{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<script>
+    function wait_msg() {
+        report_div = document.getElementById("report");
+        report_div.innerHTML = "Scraping <i>{{ form.site_url.value }}</i>, please, wait...";
+
+        report_ul = document.getElementsByTagName("ul");
+        if (report_ul != 'undefined' && report_ul) {
+            report_ul[0].innerHTML = "";
+            report_ul[0].style.border = 'none';
+        }
+    }
+</script>
+
+<form class="scraping-form" action="{% url 'scrape:main' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <label> Quotes site URL:
+            {{ form.site_url }}
+        </label>
+    </div>
+
+    {% if report %}
+    <div id="report"><strong>Scraping results:</strong></div>
+    <ul>
+        {% for line in report %}
+        <li>{{ line }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div id="report"></div>
+    {% endif %}
+
+    <div class="grid">
+        <button onclick="wait_msg()" type="submit">Start scraping</button>
+    </div>
+</form>
+
+{% endblock %}
