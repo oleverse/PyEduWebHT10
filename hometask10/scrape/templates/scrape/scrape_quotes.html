@@ -16,7 +16,7 @@
         report_div.innerHTML = "Scraping <i>{{ form.site_url.value }}</i>, please, wait...";
 
         report_ul = document.getElementsByTagName("ul");
-        if (report_ul != 'undefined' && report_ul) {
+        if (report_ul !== 'undefined' && report_ul.length > 0) {
             report_ul[0].innerHTML = "";
             report_ul[0].style.border = 'none';
         }
@@ -42,9 +42,7 @@
     <div id="report"></div>
     {% endif %}
 
-    <div class="grid">
-        <button onclick="wait_msg()" type="submit">Start scraping</button>
-    </div>
+    <input onclick="wait_msg()" type="submit" value="Start scraping" class="btn btn-primary" />
 </form>
 
 {% endblock %}

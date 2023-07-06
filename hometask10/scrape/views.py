@@ -5,7 +5,7 @@ from .db_import import import_data
 
 
 def main(request):
-    site_url = 'http://quotes.toscrape.com'
+    site_url = 'https://quotes.toscrape.com'
 
     if request.method == 'POST':
         form = ScrapeForm(request.POST)
