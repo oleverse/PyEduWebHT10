@@ -14,8 +14,7 @@
 `DB_USER=postgres`  
 `DB_PASS=<secret>`  
 `DB_HOST=127.0.0.1`  
-`DB_PORT=5433`
-
+`DB_PORT=5433`  
 Не забудьте змінити `<secret>` на той же пароль, що був вказаний при створенні контейнера postgresql
 6. Виконуємо міграцію БД:  
 `python manage.py migrate`
