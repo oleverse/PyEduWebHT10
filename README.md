@@ -8,7 +8,7 @@
 `docker run --name django-postgres -p 5432:5432 -e POSTGRES_PASSWORD=<secret> -d postgres`
 4. Переходимо до кореня Django-проєкту  
 `cd hometask10`
-5. Створити файл .env з таким вмістом:
+5. Створити файл .env з таким вмістом:  
 `DB_ENGINE=django.db.backends.postgresql_psycopg2`  
 `DB_NAME=postgres`  
 `DB_USER=postgres`  
