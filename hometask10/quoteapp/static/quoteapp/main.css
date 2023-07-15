@@ -125,3 +125,5 @@ ul.pager {
 textarea.form-control {
     width: 500px;
 }
+
+form div.small {padding-top: 10px;}

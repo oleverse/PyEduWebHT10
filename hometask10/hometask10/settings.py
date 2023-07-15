@@ -133,3 +133,16 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 QUOTES_PER_PAGE = 10
+
+
+ENV_TRUE_OPTIONS = ('yes', 'true', '1')
+
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_STARTTLS = os.getenv('EMAIL_STARTTLS')
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_TLS').lower() in ENV_TRUE_OPTIONS or False
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS').lower() in ENV_TRUE_OPTIONS or False
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

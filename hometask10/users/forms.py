@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm
 from django.contrib.auth.models import User
 
 
@@ -7,7 +7,9 @@ class RegisterForm(UserCreationForm):
     username = forms.CharField(max_length=100,
                                required=True,
                                widget=forms.TextInput(attrs={"class": "form-control"}))
-
+    email = forms.CharField(max_length=100,
+                            required=True,
+                            widget=forms.TextInput(attrs={"class": "form-control"}))
     password1 = forms.CharField(max_length=50,
                                 required=True,
                                 widget=forms.PasswordInput(attrs={"class": "form-control"}))
@@ -17,7 +19,7 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class LoginForm(AuthenticationForm):
@@ -31,3 +33,11 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['username', 'password']
+
+
+class CustomizedSetPasswordForm(SetPasswordForm):
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(user, *args, **kwargs)
+
+        self.fields['new_password1'].widget.attrs["class"] = "form-control"
+        self.fields['new_password2'].widget.attrs["class"] = "form-control"
