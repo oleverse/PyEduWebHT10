@@ -5,7 +5,7 @@
 `poetry shell`  
 `poetry update`
 3. Створимо і запустимо контейнер з БД, підставивши свої значення до плейсхолдерів:    
-`docker run --name django-postgres -p <DB_PORT>:5432 -e POSTGRES_PASSWORD=<DB_PASSWORD> -e <DB_NAME> -d postgres`
+`docker run --name django-postgres -p <DB_PORT>:5432 -e POSTGRES_PASSWORD=<DB_PASSWORD> -e POSTGRES_DB=<DB_NAME> -d postgres`
 4. Переходимо до кореня Django-проєкту  
 `cd hometask10`
 5. Перейменувати, або скопіювати файл env_sample на .env з таким вмістом:  
