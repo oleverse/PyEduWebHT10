@@ -8,14 +8,7 @@
 `docker run --name django-postgres -p <DB_PORT>:5432 -e POSTGRES_PASSWORD=<DB_PASSWORD> -e POSTGRES_DB=<DB_NAME> -d postgres`
 4. Переходимо до кореня Django-проєкту  
 `cd hometask10`
-5. Перейменувати, або скопіювати файл env_sample на .env з таким вмістом:  
-`DB_ENGINE=django.db.backends.postgresql_psycopg2`  
-`DB_NAME=<DB_NAME>`  
-`DB_USER=postgres`  
-`DB_PASS=<secret>`  
-`DB_HOST=127.0.0.1`  
-`DB_PORT=<DB_PORT>`  
-Не забудьте змінити значення плейсхолдерів на такі ж, що вказали при створенні контейнера postgresql
+5. Перейменувати, або скопіювати файл env_sample на .env та заповнити своїми даними
 6. Виконуємо міграцію БД:  
 `python manage.py migrate`
 7. Запускаємо сервер з ключем --insecure, щоб Django обробляв запити на статичні ресурси,
