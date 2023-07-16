@@ -1,21 +1,22 @@
 [tool.poetry]
-name = "hometask-10"
+name = "hometask-13.2"
 version = "0.1.0"
 description = ""
 authors = ["Oleksii Petrashov <oleksii.petrashov@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "hometask10"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^4.2.2"
 psycopg2-binary = "^2.9.6"
-pillow = "^9.5.0"
+pillow = "^10.0.0"
 beautifulsoup4 = "^4.12.2"
 lxml = "^4.9.2"
 requests = "^2.31.0"
 python-dotenv = "^1.0.0"
+django-environ = "^0.10.0"
 
 
 [build-system]
