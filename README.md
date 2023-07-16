@@ -1,21 +1,21 @@
 **Послідовність запуску:**
-1. `git clone git@github.com:oleverse/PyEduWebHT10.git`
+1. `git clone -b hometask-13.2 git@github.com:oleverse/PyEduWebHT10.git PyEduWebHT13.2`
 2. Створимо віртуальне середовище і встановимо залежності:   
-`cd PyEduWebHT10`  
+`cd PyEduWebHT13.2`  
 `poetry shell`  
 `poetry update`
-3. Створимо і запустимо контейнер з БД:  
-`docker run --name django-postgres -p 5432:5432 -e POSTGRES_PASSWORD=<secret> -d postgres`
+3. Створимо і запустимо контейнер з БД, підставивши свої значення до плейсхолдерів:    
+`docker run --name django-postgres -p <DB_PORT>:5432 -e POSTGRES_PASSWORD=<DB_PASSWORD> -d <DB_NAME>`
 4. Переходимо до кореня Django-проєкту  
 `cd hometask10`
-5. Створити файл .env з таким вмістом:  
+5. Перейменувати, або скопіювати файл env_sample на .env з таким вмістом:  
 `DB_ENGINE=django.db.backends.postgresql_psycopg2`  
-`DB_NAME=postgres`  
+`DB_NAME=<DB_NAME>`  
 `DB_USER=postgres`  
 `DB_PASS=<secret>`  
 `DB_HOST=127.0.0.1`  
-`DB_PORT=5432`  
-Не забудьте змінити `<secret>` на той же пароль, що був вказаний при створенні контейнера postgresql
+`DB_PORT=<DB_PORT>`  
+Не забудьте змінити значення плейсхолдерів на такі ж, що вказали при створенні контейнера postgresql
 6. Виконуємо міграцію БД:  
 `python manage.py migrate`
 7. Запускаємо сервер з ключем --insecure, щоб Django обробляв запити на статичні ресурси,
@@ -38,3 +38,5 @@
 15. Пейджінація реалізована.
 16. Для управління даними застосунку з адмін-панелі спочатку потрібно створити супер-адміністратора  
 `python manage.py createsuperuser`
+17. Для того щоб скинути пароль користувача, потрібно перейти на сторінку `Login` і обрати
+знизу посилання `Forgot password?`
